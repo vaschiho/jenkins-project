@@ -5,30 +5,21 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/vaschiho/jenkins-project.git', branch: 'main'
-                sh 'ls -ltr'
+                git branch: 'main',
+                    url: 'https://github.com/vaschiho/jenkins-project.git'
             }
         }
 
-        stage('Setup') {
+        stage('Install Dependencies') {
             steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                '''
+                sh 'pip install -r requirements.txt'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    pytest
-                '''
+                sh 'pytest'
             }
         }
-
     }
 }

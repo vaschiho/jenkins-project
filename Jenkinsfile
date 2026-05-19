@@ -26,6 +26,12 @@ pipeline {
                 '''
                 echo "The Path is ${env.PATH}"
                 echo "echo credentials is ${SERVER_CRED_USR} and ${SERVER_CRED_PSW}"
+                withCredentials([usernamePassword(credentialsId: 'hope', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''
+                        echo "Username: ${USERNAME}"
+                        echo "Password: ${PASSWORD}"
+                    '''
+                }
             }
         }
 

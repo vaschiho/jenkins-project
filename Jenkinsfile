@@ -15,6 +15,21 @@ pipeline {
                     url: 'https://github.com/vaschiho/jenkins-project.git'
             }
         }
+        stage("Lint and formating") {
+            stages {
+                stage('Lint') {
+                    steps {
+                        echo "Linting the code..."
+                    }
+                }
+                stage('Format') {
+                    steps {
+                        echo "Formatting the code..."
+                    }
+                }
+                }
+            }
+        }
 
        stage('Install Dependencies') {
             steps {

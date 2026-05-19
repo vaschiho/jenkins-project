@@ -4,6 +4,7 @@ pipeline {
     environment {
         VIRTUAL_ENV = 'venv'
         PATH = "${env.WORKSPACE}/venv/bin:${env.PATH}"
+        SERVER_CRED = credentials('hope')
     }
 
     stages {
@@ -24,6 +25,7 @@ pipeline {
                     pip install -r requirements.txt
                 '''
                 echo "The Path is ${env.PATH}"
+                echo "echo credentials is ${SERVER_CRED_USR} and ${SERVER_CRED_PSW}"
             }
         }
 
